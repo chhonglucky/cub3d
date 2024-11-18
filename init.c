@@ -6,7 +6,7 @@
 /*   By: chanhhon <chanhhon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:31:09 by jae-kang          #+#    #+#             */
-/*   Updated: 2024/11/12 16:21:13 by chanhhon         ###   ########.fr       */
+/*   Updated: 2024/11/18 11:10:57 by chanhhon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,3 @@ void	init_map(t_map *map)
 	map->texture[3].addr = 0;
 }
 
-void	init_player(t_mlx *mlx, int x, int y, char dir)
-{
-
-}

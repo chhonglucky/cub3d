@@ -6,7 +6,7 @@
 /*   By: chanhhon <chanhhon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:32:50 by chanhhon          #+#    #+#             */
-/*   Updated: 2024/11/12 17:33:44 by chanhhon         ###   ########.fr       */
+/*   Updated: 2024/11/18 11:09:39 by chanhhon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,11 @@ static void	init_map_coordinate(t_draw *arg, t_mlx *mlx)
 
 void	init_draw_args(t_draw *arg, t_mlx *mlx, int x)
 {
-	dou
+	double width_position;
+
+	width_position = 2.0 * x / WIDTH - 1;
+	init_ray_dir(arg, mlx, width_position);
+	init_map_coordinate(arg, mlx);
+	init_delta_dist(arg);
+	init_side_dist(arg, mlx);
 }
