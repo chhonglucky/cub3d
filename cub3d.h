@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhhon <chanhhon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hongchanhyeong <hongchanhyeong@student.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:10:33 by jae-kang          #+#    #+#             */
-/*   Updated: 2024/11/18 12:16:15 by chanhhon         ###   ########.fr       */
+/*   Updated: 2024/11/22 16:43:57 by hongchanhye      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define WIDTH	1280
 # define HEIGHT	720
 # define FOV 0.66
+# define PLAYER_SIZE 0.125
 
 # define KEY_W 13
 # define KEY_A 0
@@ -136,8 +137,12 @@ void	print_parsing(t_map *map);
 // init_data.c
 void	init_draw_args(t_draw *arg, t_mlx *mlx, int x);
 
-// init_player.c
+// player.c
 void	init_player(t_mlx *mlx, int x, int y, char dir);
+
+// util math.c
+t_coor	rotate(t_coor before, int deg);
+t_coor	scalar_mult(t_coor vec, double scalar);
 
 
 #endif
