@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hongchanhyeong <hongchanhyeong@student.    +#+  +:+       +#+        */
+/*   By: chanhhon <chanhhon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 11:11:09 by chanhhon          #+#    #+#             */
-/*   Updated: 2024/11/22 16:49:39 by hongchanhye      ###   ########.fr       */
+/*   Updated: 2024/11/23 11:07:03 by chanhhon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,51 +35,33 @@ void	init_player(t_mlx *mlx, int x, int y, char dir)
 		mlx->player.key_map[i] = 0;
 }
 
-static t_coor	move_decision(t_pov *player)
+void	rotate_player(t_mlx *mlx)
 {
-	t_coor	direction;
-
-	if (player->key_map[0] == 1 && player->key_map[2] == 0)
+	if (mlx->player.key_map[4] == mlx->player.key_map[5])
+		return ;
+	if (mlx->player.key_map[5] == 1)
 	{
-		if (player->key_map[1] == 1 && player->key_map[3] == 0)
-			direction = rotate(player->dir_vec, 45);
-		else if (player->key_map[1] == 0 && player->key_map[3] == 1)
-			direction = rotate(player->dir_vec, 315);
-		else
-			direction = player->dir_vec;
+		mlx->player.dir_vec = rotate(mlx->player.dir_vec, -ROTSPEED);
+		mlx->player.cam_vec = rotate(mlx->player.cam_vec, -ROTSPEED);
 	}
-	else if (player->key_map[0] == 0 && player->key_map[2] == 1)
+	else if (mlx->player.key_map[4] == 1)
 	{
-		if (player->key_map[1] == 1 && player->key_map[3] == 0)
-			direction = rotate(player->dir_vec, 135);
-		else if (player->key_map[1] == 0 && player->key_map[3] == 1)
-			direction = rotate(player->dir_vec, 225);
-		else
-			direction  = rotate(player->dir_vec, 180);
+		mlx->player.dir_vec = rotate(mlx->player.dir_vec, ROTSPEED);
+		mlx->player.cam_vec = rotate(mlx->player.cam_vec, ROTSPEED);
 	}
-	else if (player->key_map[1] == 1)
-		direction = rotate(player->dir_vec, 90);
-	else
-		direction = rotate(player->dir_vec, 270);
-	return (direction);
 }
 
-static int check_map(t_mlx *mlx, t_coor ang)
+void	move_player(t_mlx *mlx)
 {
-	if (ang.x < 0 || ang.x >= mlx->map.map_width)
-		return (1);
-	else if (ang.y < 0 || ang.y >= mlx->map.map_height)
-		return (1);
-	else if (mlx->map.map[(int)ang.y][(int)ang.x] != '0')
-		return (1);
-	return (0);
+	t_coor	delta;
+	t_coor	player;
+
+	if (mlx->player.key_map[0] == mlx->player.key_map[2]
+			&& mlx->player.key_map[1] == mlx->player.key_map[3])
+		return ;
+	delta = move_decision(&(mlx->player));
+	player = mlx->player.pos;
+	if (is_movable(mlx, sum_vec(player, mult_scal(delta, MOVESPEED)), delta))
+		player = sum_vec(player, mult_scal(delta, MOVESPEED));
+	mlx->player.pos = player;
 }
-
-static int	is_movable(t_mlx *mlx, t_coor player, t_coor delta)
-{
-	t_coor	ang
-}
-
-
-
-

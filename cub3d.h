@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hongchanhyeong <hongchanhyeong@student.    +#+  +:+       +#+        */
+/*   By: chanhhon <chanhhon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:10:33 by jae-kang          #+#    #+#             */
-/*   Updated: 2024/11/22 16:43:57 by hongchanhye      ###   ########.fr       */
+/*   Updated: 2024/11/23 12:36:51 by chanhhon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@
 # define HEIGHT	720
 # define FOV 0.66
 # define PLAYER_SIZE 0.125
+# define ROTSPEED 1
+# define MOVESPEED 0.03125
 
+# define KEY_ESC 53
 # define KEY_W 13
 # define KEY_A 0
 # define KEY_S 1
@@ -134,15 +137,32 @@ void	print_parsing(t_map *map);
 
 // hook callback.c
 
+int	key_press_callback(int keycode, t_mlx *mlx);
+int	key_release_callback(int keycode, t_mlx *mlx);
+
 // init_data.c
 void	init_draw_args(t_draw *arg, t_mlx *mlx, int x);
 
 // player.c
 void	init_player(t_mlx *mlx, int x, int y, char dir);
+void	rotate_player(t_mlx *mlx);
+void	move_player(t_mlx *mlx);
+
+// player_check.c
+int		check_map(t_mlx *mlx, t_coor ang);
+int		is_movable(t_mlx *mlx, t_coor player, t_coor delta);
+t_coor	move_decision(t_pov *player);
 
 // util math.c
 t_coor	rotate(t_coor before, int deg);
-t_coor	scalar_mult(t_coor vec, double scalar);
+t_coor	mult_scal(t_coor vec, double scalar);
+t_coor	sum_vec(t_coor vec1, t_coor vec2);
 
+// rendering.c
+int rendering(t_mlx *mlx);
+
+// close_window.c
+int		close_window(t_mlx *mlx);
+void	free_map(t_mlx *mlx);
 
 #endif

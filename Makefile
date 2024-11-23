@@ -7,7 +7,10 @@ MLXDIR=mlx
 MLX_NAME=libmlx.a
 LDFLAGS=-L. -lft -lmlx -framework OpenGL -framework AppKit
 SRCS=gnl/get_next_line.c gnl/get_next_line_utils.c \
-	main.c init.c parsing.c parsing_color.c parsing_texture.c parsing_map.c parsing_utils.c utils.c
+	main.c init.c parsing.c parsing_color.c parsing_texture.c parsing_map.c \
+	parsing_utils.c utils.c \
+	close_window.c hook_callback.c player_check.c player.c rendering.c \
+	util_math.c init_data.c
 
 OBJS=$(SRCS:.c=.o)
 NAME=CUB3D

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util_math.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hongchanhyeong <hongchanhyeong@student.    +#+  +:+       +#+        */
+/*   By: chanhhon <chanhhon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:33:41 by hongchanhye       #+#    #+#             */
-/*   Updated: 2024/11/22 16:37:08 by hongchanhye      ###   ########.fr       */
+/*   Updated: 2024/11/23 14:22:46 by chanhhon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,18 @@ t_coor	rotate(t_coor before, int deg)
 	return (after);
 }
 
-t_coor	scalar_mult(t_coor vec, double scalar)
+t_coor	mult_scal(t_coor vec, double scalar)
 {
 	vec.x *= scalar;
 	vec.y *= scalar;
 	return (vec);
+}
+
+t_coor	sum_vec(t_coor vec1, t_coor vec2)
+{
+	t_coor	return_vec;
+
+	return_vec.x = vec1.x + vec2.x;
+	return_vec.y = vec2.y + vec2.y;
+	return (return_vec);
 }
