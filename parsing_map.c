@@ -6,7 +6,7 @@
 /*   By: chanhhon <chanhhon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:51:35 by kangjaehyun       #+#    #+#             */
-/*   Updated: 2024/11/23 15:02:42 by chanhhon         ###   ########.fr       */
+/*   Updated: 2024/11/23 16:04:52 by chanhhon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void    parsing_map(char *file_name, int fd, t_mlx *mlx)
     get_point(fd, mlx);
     is_valid_map(mlx, mlx->map.map);
 	set_position(mlx);
+	// init_player(mlx, )
 }
 
 static int    count_map_size(int fd, t_map *map, t_mlx *mlx)
@@ -70,7 +71,8 @@ static void    get_point(int fd, t_mlx *mlx)
         print_error("ERROR: malloc error", mlx);
     i = 0;
     line = skip_info(fd);
-    while (line)
+    printf("get point line: %s\n", line);
+	while (line)
     {
         mlx->map.map[i] = copy_line(line, mlx->map.map_width);
         if (mlx->map.map[i++] == 0)
@@ -87,8 +89,10 @@ static char    *skip_info(int fd)
     line = get_next_line(fd);
     while (line)
     {
-        if ((line[0] >= '0' && line[0] <= '2') || line[0] == ' ')
-            break ;
+        if ((line[0] >= '0' && line[0] <= '2') || line[0] == ' ' 
+			|| line[0] == 'N' || line[0] == 'E' || line[0] == 'S' || line[0] == 'W')
+			if (line[1] == '0' || line[1] == '1' || line[1] == 0 || line[1] == ' ')
+				break ;
         free(line);
         line = get_next_line(fd);
     }
@@ -118,8 +122,10 @@ void    is_valid_map(t_mlx *mlx, char **map)
     int j;
 
     i = -1;
+	printf("check\n");
     while (++i < mlx->map.map_height)
     {
+		printf("????\n");
         j = 0;
         if (i == 0 || i == mlx->map.map_height - 1)
         {

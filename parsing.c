@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jae-kang <jae-kang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chanhhon <chanhhon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:40:19 by jae-kang          #+#    #+#             */
-/*   Updated: 2024/11/12 09:59:57 by jae-kang         ###   ########.fr       */
+/*   Updated: 2024/11/23 15:42:19 by chanhhon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	parsing(char *file_name, t_mlx *mlx)
 	if (parsing_info(fd, mlx))
 		return ;
 	parsing_map(file_name, fd, mlx);
-	print_parsing(&mlx->map);
 	close(fd);
 }
 

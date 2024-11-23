@@ -6,7 +6,7 @@
 /*   By: chanhhon <chanhhon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:10:33 by jae-kang          #+#    #+#             */
-/*   Updated: 2024/11/23 15:01:46 by chanhhon         ###   ########.fr       */
+/*   Updated: 2024/11/23 15:37:16 by chanhhon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ void	print_error(char *msg, t_mlx *mlx);
 void	free_split(char **str);
 char    *copy_line(char *line, int width);
 void	free_mlx(t_mlx *mlx);
-void	print_parsing(t_map *map);
+void	print_parsing(t_mlx *mlx, t_map *map);
 
 
 // hook callback.c

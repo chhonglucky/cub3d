@@ -6,7 +6,7 @@
 /*   By: chanhhon <chanhhon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:04:49 by kangjaehyun       #+#    #+#             */
-/*   Updated: 2024/11/23 15:26:17 by chanhhon         ###   ########.fr       */
+/*   Updated: 2024/11/23 15:34:40 by chanhhon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,29 +70,29 @@ void    last_enter(char *file_name, t_mlx *mlx)
     }   
 }
 
-static void	set_direction(t_mlx *mlx, int i, int j)
-{
-	if (mlx->map.map[i][j] == 'N')
-	{
-		mlx->player.dir_vec.x = 0;
-		mlx->player.dir_vec.y = 1;
-	}
-	if (mlx->map.map[i][j] == 'S')
-	{
-		mlx->player.dir_vec.x = 0;
-		mlx->player.dir_vec.y = -1;
-	}
-	if (mlx->map.map[i][j] == 'E')
-	{
-		mlx->player.dir_vec.x = 1;
-		mlx->player.dir_vec.y = 0;
-	}
-	if (mlx->map.map[i][j] == 'W')
-	{
-		mlx->player.dir_vec.x = -1;
-		mlx->player.dir_vec.y = 0;
-	}
-}
+// static void	set_direction(t_mlx *mlx, int i, int j)
+// {
+// 	if (mlx->map.map[i][j] == 'N')
+// 	{
+// 		mlx->player.dir_vec.x = 0;
+// 		mlx->player.dir_vec.y = 1;
+// 	}
+// 	if (mlx->map.map[i][j] == 'S')
+// 	{
+// 		mlx->player.dir_vec.x = 0;
+// 		mlx->player.dir_vec.y = -1;
+// 	}
+// 	if (mlx->map.map[i][j] == 'E')
+// 	{
+// 		mlx->player.dir_vec.x = 1;
+// 		mlx->player.dir_vec.y = 0;
+// 	}
+// 	if (mlx->map.map[i][j] == 'W')
+// 	{
+// 		mlx->player.dir_vec.x = -1;
+// 		mlx->player.dir_vec.y = 0;
+// 	}
+// }
 
 void	set_position(t_mlx *mlx)
 {
@@ -107,10 +107,11 @@ void	set_position(t_mlx *mlx)
 		{
 			if (mlx->map.map[i][j] != '0' && mlx->map.map[i][j] != '1')
 			{
-				set_direction(mlx, i, j);
+				init_player(mlx, j, i, mlx->map.map[i][j]);
+				// set_direction(mlx, i, j);
 				mlx->map.map[i][j] = '0';
-				mlx->player.pos.y = i + 0.5;
-				mlx->player.pos.x = j + 0.5;
+				// mlx->player.pos.y = i + 0.5;
+				// mlx->player.pos.x = j + 0.5;
 			}
 			j++;
 		}

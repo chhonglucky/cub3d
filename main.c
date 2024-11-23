@@ -6,7 +6,7 @@
 /*   By: chanhhon <chanhhon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:16:05 by jae-kang          #+#    #+#             */
-/*   Updated: 2024/11/23 15:15:46 by chanhhon         ###   ########.fr       */
+/*   Updated: 2024/11/23 15:42:03 by chanhhon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int argc, char *argv[])
 	if (init_mlx(&mlx) == 0)
 		print_error("ERROR: init mlx", 0);
 	parsing(argv[1], &mlx);
-	print_parsing(&mlx.map);
+	print_parsing(&mlx, &mlx.map); // 파싱 전체 출력
 	printf("%f %f\n", mlx.player.pos.x, mlx.player.pos.y);
 
 	mlx_loop_hook(mlx.ptr, rendering, &mlx);

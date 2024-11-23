@@ -6,7 +6,7 @@
 /*   By: chanhhon <chanhhon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:16:41 by jae-kang          #+#    #+#             */
-/*   Updated: 2024/11/23 15:06:08 by chanhhon         ###   ########.fr       */
+/*   Updated: 2024/11/23 16:10:11 by chanhhon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char    *copy_line(char *line, int width)
     {
 		copy[i] = line[i];
 		if (copy[i] == ' ')
-			copy[i] = '1';
+			copy[i] = '0';
 	}
     while (i < width)
         copy[i++] = '1';
