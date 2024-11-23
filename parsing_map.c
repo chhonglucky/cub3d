@@ -3,36 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jae-kang <jae-kang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chanhhon <chanhhon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:51:35 by kangjaehyun       #+#    #+#             */
-/*   Updated: 2024/11/12 14:01:14 by jae-kang         ###   ########.fr       */
+/*   Updated: 2024/11/23 15:02:42 by chanhhon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void     count_map_size(int fd, t_map *map, t_mlx *mlx);
+static int		count_map_size(int fd, t_map *map, t_mlx *mlx);
 static void     get_point(int fd, t_mlx *mlx);
 static char     *skip_info(int fd);
-static int      line_digit_check(char *line);
+static int      line_digit_check(char *line, int *n);
 static void     is_valid_map(t_mlx *mlx, char **map);
 
 void    parsing_map(char *file_name, int fd, t_mlx *mlx)
 {
-    count_map_size(fd, &(mlx->map), mlx);
+	if (count_map_size(fd, &(mlx->map), mlx) != 1)
+		print_error("ERROR: where is my point?", mlx);
     printf("map size: %d x %d\n", mlx->map.map_width, mlx->map.map_height);
     fd = open(file_name, O_RDONLY);
     if (fd < 0)
         print_error("ERROR: cannot open .cub file", mlx);
     get_point(fd, mlx);
     is_valid_map(mlx, mlx->map.map);
+	set_position(mlx);
 }
 
-static void    count_map_size(int fd, t_map *map, t_mlx *mlx)
+static int    count_map_size(int fd, t_map *map, t_mlx *mlx)
 {
     char    *line;
+	int		n;
 
+	n = 0;
     line = get_next_line(fd);
     while (line && line[0] == '\n')
     {
@@ -44,7 +48,7 @@ static void    count_map_size(int fd, t_map *map, t_mlx *mlx)
         if (map->map_width < (int)ft_strlen(line) - 1)
             map->map_width = (int)ft_strlen(line) - 1;
         map->map_height += 1;
-        if (line_digit_check(line))
+        if (line_digit_check(line, &n))
         {
             free(line);
             print_error("ERROR: Wrong character in the map", mlx);
@@ -53,6 +57,7 @@ static void    count_map_size(int fd, t_map *map, t_mlx *mlx)
         line = get_next_line(fd);
     }
     close(fd);
+	return (n);
 }
 
 static void    get_point(int fd, t_mlx *mlx)
@@ -90,16 +95,18 @@ static char    *skip_info(int fd)
     return (line);
 }
 
-static int line_digit_check(char *line)
+static int line_digit_check(char *line, int *n)
 {
     int i;
-
+	
     i = 0;
-
     while (line[i] && line[i] != '\n')
     {
         if (!(line[i] >= '0' && line[i] <= '2') && line[i] != ' ')
-            return (1);
+			if (line[i] != 'N' && line[i] != 'S' && line[i] != 'E' && line[i] != 'W')
+				return (1);
+		if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
+			*n += 1;
         i++;
     }
     return (0);
@@ -109,7 +116,7 @@ void    is_valid_map(t_mlx *mlx, char **map)
 {
     int i;
     int j;
-       
+
     i = -1;
     while (++i < mlx->map.map_height)
     {

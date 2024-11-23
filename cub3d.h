@@ -6,7 +6,7 @@
 /*   By: chanhhon <chanhhon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:10:33 by jae-kang          #+#    #+#             */
-/*   Updated: 2024/11/23 12:36:51 by chanhhon         ###   ########.fr       */
+/*   Updated: 2024/11/23 15:01:46 by chanhhon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ void	parsing_color(char **split, t_mlx *mlx);
 int		check_file_name(char *file_name);
 void	*get_mem(char *str, t_mlx *mlx);
 void    last_enter(char *file_name, t_mlx *mlx);
+void	set_position(t_mlx *mlx);
 
 // utils.c
 void	print_error(char *msg, t_mlx *mlx);
