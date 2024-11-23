@@ -6,7 +6,7 @@
 /*   By: chanhhon <chanhhon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/22 16:33:41 by hongchanhye       #+#    #+#             */
-/*   Updated: 2024/11/23 14:22:46 by chanhhon         ###   ########.fr       */
+/*   Updated: 2024/11/23 16:38:17 by chanhhon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ t_coor	sum_vec(t_coor vec1, t_coor vec2)
 	t_coor	return_vec;
 
 	return_vec.x = vec1.x + vec2.x;
-	return_vec.y = vec2.y + vec2.y;
+	return_vec.y = vec1.y + vec2.y;
 	return (return_vec);
 }

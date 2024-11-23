@@ -6,7 +6,7 @@
 /*   By: chanhhon <chanhhon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 11:11:09 by chanhhon          #+#    #+#             */
-/*   Updated: 2024/11/23 11:07:03 by chanhhon         ###   ########.fr       */
+/*   Updated: 2024/11/23 18:00:14 by chanhhon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,5 @@ void	move_player(t_mlx *mlx)
 	if (is_movable(mlx, sum_vec(player, mult_scal(delta, MOVESPEED)), delta))
 		player = sum_vec(player, mult_scal(delta, MOVESPEED));
 	mlx->player.pos = player;
+
 }

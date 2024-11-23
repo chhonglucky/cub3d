@@ -6,7 +6,7 @@
 /*   By: chanhhon <chanhhon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:51:35 by kangjaehyun       #+#    #+#             */
-/*   Updated: 2024/11/23 16:04:52 by chanhhon         ###   ########.fr       */
+/*   Updated: 2024/11/23 18:02:06 by chanhhon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void    parsing_map(char *file_name, int fd, t_mlx *mlx)
 {
 	if (count_map_size(fd, &(mlx->map), mlx) != 1)
 		print_error("ERROR: where is my point?", mlx);
-    printf("map size: %d x %d\n", mlx->map.map_width, mlx->map.map_height);
+    // printf("map size: %d x %d\n", mlx->map.map_width, mlx->map.map_height);
     fd = open(file_name, O_RDONLY);
     if (fd < 0)
         print_error("ERROR: cannot open .cub file", mlx);
@@ -71,7 +71,6 @@ static void    get_point(int fd, t_mlx *mlx)
         print_error("ERROR: malloc error", mlx);
     i = 0;
     line = skip_info(fd);
-    printf("get point line: %s\n", line);
 	while (line)
     {
         mlx->map.map[i] = copy_line(line, mlx->map.map_width);
@@ -122,10 +121,8 @@ void    is_valid_map(t_mlx *mlx, char **map)
     int j;
 
     i = -1;
-	printf("check\n");
     while (++i < mlx->map.map_height)
     {
-		printf("????\n");
         j = 0;
         if (i == 0 || i == mlx->map.map_height - 1)
         {

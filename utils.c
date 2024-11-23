@@ -6,7 +6,7 @@
 /*   By: chanhhon <chanhhon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:16:41 by jae-kang          #+#    #+#             */
-/*   Updated: 2024/11/23 16:10:11 by chanhhon         ###   ########.fr       */
+/*   Updated: 2024/11/23 17:50:27 by chanhhon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char    *copy_line(char *line, int width)
     {
 		copy[i] = line[i];
 		if (copy[i] == ' ')
-			copy[i] = '0';
+			copy[i] = '1';
 	}
     while (i < width)
         copy[i++] = '1';
@@ -62,14 +62,29 @@ void	free_mlx(t_mlx *mlx)
 	mlx_destroy_image(mlx->ptr, mlx->img.img);
 	mlx_destroy_window(mlx->ptr, mlx->win);
 	i = -1;
-	while (mlx->map.map && ++i < mlx->map.map_height)
+	while (mlx->map.map && ++i < mlx->map.map_height && mlx->map.map[i])
 		free(mlx->map.map[i]);
 	if (mlx->map.map)
 		free(mlx->map.map);
 }
 
-void	print_parsing(t_map *map)
+void	print_t_coor(t_coor temp)
 {
+	printf("x : %f\t y : %f\n\n", temp.x, temp.y);
+}
+
+void	print_parsing(t_mlx *mlx, t_map *map)
+{
+	printf("mlx->player 출력\n\n\n");
+	printf("mlx->player.pos\t");
+	print_t_coor(mlx->player.pos);
+	printf("mlx->player.dir_vec\t");
+	print_t_coor(mlx->player.dir_vec);
+	printf("mlx->player.cam_vec\t");
+	print_t_coor(mlx->player.cam_vec);
+
+
+	
 	printf("천장: %x\n", map->ceilling);
 	printf("바닥: %x\n", map->floor);
 	for (int i = 0; i < 4; i++)

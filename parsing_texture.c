@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_texture.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jae-kang <jae-kang@student.42.fr>          +#+  +:+       +#+        */
+/*   By: chanhhon <chanhhon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 16:41:01 by jae-kang          #+#    #+#             */
-/*   Updated: 2024/11/12 09:51:24 by jae-kang         ###   ########.fr       */
+/*   Updated: 2024/11/23 17:51:28 by chanhhon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	parsing_texture(char **split, t_mlx *mlx)
 		print_error("ERROR", mlx);
 	data->img = mlx_xpm_file_to_image(mlx->ptr, split[1], &data->tex_w, &data->tex_h);
 	if (data->img == 0)
-		print_error("ERROR: error in mlx_xpm_file_to_image()", mlx);
+		print_error("ERROR: mlx_xpm_file_to_image()", mlx);
 	data->addr = mlx_get_data_addr(data->img, &data->bpp, &data->line, &data->endian);
 	if (data->addr == 0)
 		print_error("ERROR: error in mlx_get_data_addr()", mlx);

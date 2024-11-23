@@ -6,7 +6,7 @@
 /*   By: chanhhon <chanhhon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:04:58 by chanhhon          #+#    #+#             */
-/*   Updated: 2024/11/23 14:22:16 by chanhhon         ###   ########.fr       */
+/*   Updated: 2024/11/23 16:29:48 by chanhhon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ int	is_movable(t_mlx *mlx, t_coor player, t_coor delta)
 	{
 		check_ang = sum_vec(player, mult_scal(rotate(delta, i), PLAYER_SIZE));
 		if (check_map(mlx, check_ang))
-			return (1);
+			return (0);
 		i += 90;
 	}
-	return (0);
+	return (1);
 }
 
 t_coor	move_decision(t_pov *player)

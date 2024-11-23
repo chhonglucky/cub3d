@@ -6,7 +6,7 @@
 /*   By: chanhhon <chanhhon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:32:50 by chanhhon          #+#    #+#             */
-/*   Updated: 2024/11/18 11:09:39 by chanhhon         ###   ########.fr       */
+/*   Updated: 2024/11/23 16:52:51 by chanhhon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ static void init_side_dist(t_draw *arg, t_mlx *mlx)
 
 static void	init_ray_dir(t_draw *arg, t_mlx *mlx, double cam_pos)
 {
-	arg->ray_dir.x = mlx->player.dir_vec.x + mlx->player.cam_vec.x + cam_pos;
-	arg->ray_dir.y = mlx->player.dir_vec.y + mlx->player.cam_vec.y + cam_pos;
+	arg->ray_dir.x = mlx->player.dir_vec.x + mlx->player.cam_vec.x * cam_pos;
+	arg->ray_dir.y = mlx->player.dir_vec.y + mlx->player.cam_vec.y * cam_pos;
 }
 
 static void	init_map_coordinate(t_draw *arg, t_mlx *mlx)
