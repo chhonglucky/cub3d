@@ -6,7 +6,7 @@
 /*   By: jae-kang <jae-kang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:52:48 by jae-kang          #+#    #+#             */
-/*   Updated: 2024/11/12 10:00:50 by jae-kang         ###   ########.fr       */
+/*   Updated: 2024/11/24 10:39:12 by jae-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	is_color(char *str)
 
 void	parsing_color(char **split, t_mlx *mlx)
 {
-	char		**color;
-	unsigned	int	*data;
+	char			**color;
+	unsigned int	*data;
 
 	if (split[1] == 0 || split[2])
 		print_error("ERROR: parsing error (parsing_color)", mlx);

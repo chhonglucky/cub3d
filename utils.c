@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: chanhhon <chanhhon@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/29 15:16:41 by jae-kang          #+#    #+#             */
-/*   Updated: 2024/11/23 17:50:27 by chanhhon         ###   ########.fr       */
-/*                                                                            */
+/*																			*/
+/*														:::	  ::::::::   */
+/*   utils.c											:+:	  :+:	:+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: kangjaehyun <kangjaehyun@student.42.fr>	+#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2024/10/29 15:16:41 by jae-kang		  #+#	#+#			 */
+/*   Updated: 2024/11/24 00:01:45 by kangjaehyun	  ###   ########.fr	   */
+/*																			*/
 /* ************************************************************************** */
 
 #include "cub3d.h"
@@ -30,25 +30,48 @@ void	free_split(char **str)
 	free(str);
 }
 
-char    *copy_line(char *line, int width)
+char	*copy_line(char *line, int width)
 {
-    char    *copy;
-    int     i;
+	char	*copy;
+	int		i;
 
-    copy = (char *)malloc(sizeof(char) * (width + 1));
-    if (!copy)
-        return (0);
-    i = -1;
-    while (line[++i] != '\n')
-    {
+	copy = (char *)malloc(sizeof(char) * (width + 1));
+	if (!copy)
+		return (0);
+	i = -1;
+	while (line[++i] != '\n')
 		copy[i] = line[i];
-		if (copy[i] == ' ')
-			copy[i] = '1';
+	while (i < width)
+		copy[i++] = ' ';
+	copy[width] = ' ';
+	return (copy);
+}
+
+int	check_valid_map(t_map *map)
+{
+	int	row;
+	int	col;
+
+	row = -1;
+	while (++row < map->map_height)
+	{
+		col = -1;
+		while (++col < map->map_width)
+		{
+			if (map->map[row][col] == ' ')
+			{
+				if (row - 1 >= 0 && map->map[row - 1][col] == '0')
+					return (1);
+				if (row + 1 < map->map_height && map->map[row + 1][col] == '0')
+					return (1);
+				if (col - 1 >= 0 && map->map[row][col - 1] == '0')
+					return (1);
+				if (col + 1 < map->map_width && map->map[row][col + 1] == '0')
+					return (1);
+			}
+		}
 	}
-    while (i < width)
-        copy[i++] = '1';
-	copy[width] = 0;
-    return copy;
+	return (0);
 }
 
 void	free_mlx(t_mlx *mlx)
@@ -66,36 +89,4 @@ void	free_mlx(t_mlx *mlx)
 		free(mlx->map.map[i]);
 	if (mlx->map.map)
 		free(mlx->map.map);
-}
-
-void	print_t_coor(t_coor temp)
-{
-	printf("x : %f\t y : %f\n\n", temp.x, temp.y);
-}
-
-void	print_parsing(t_mlx *mlx, t_map *map)
-{
-	printf("mlx->player 출력\n\n\n");
-	printf("mlx->player.pos\t");
-	print_t_coor(mlx->player.pos);
-	printf("mlx->player.dir_vec\t");
-	print_t_coor(mlx->player.dir_vec);
-	printf("mlx->player.cam_vec\t");
-	print_t_coor(mlx->player.cam_vec);
-
-
-	
-	printf("천장: %x\n", map->ceilling);
-	printf("바닥: %x\n", map->floor);
-	for (int i = 0; i < 4; i++)
-	{
-		printf("texture[%d]: ", i);
-		if (map->texture[i].addr)
-			printf("OK");
-		printf("\n");
-	}
-	printf("------------------------------------------------\n");
-	for (int i = 0; i < map->map_height; i++)
-		printf("%s\n", map->map[i]);
-	printf("------------------------------------------------\n");
 }

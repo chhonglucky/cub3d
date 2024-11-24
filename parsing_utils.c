@@ -1,13 +1,13 @@
 /* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parsing_utils.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: chanhhon <chanhhon@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 16:04:49 by kangjaehyun       #+#    #+#             */
-/*   Updated: 2024/11/23 15:34:40 by chanhhon         ###   ########.fr       */
-/*                                                                            */
+/*																			*/
+/*														:::	  ::::::::   */
+/*   parsing_utils.c									:+:	  :+:	:+:   */
+/*													+:+ +:+		 +:+	 */
+/*   By: kangjaehyun <kangjaehyun@student.42.fr>	+#+  +:+	   +#+		*/
+/*												+#+#+#+#+#+   +#+		   */
+/*   Created: 2024/11/11 16:04:49 by kangjaehyun	   #+#	#+#			 */
+/*   Updated: 2024/11/23 23:26:13 by kangjaehyun	  ###   ########.fr	   */
+/*																			*/
 /* ************************************************************************** */
 
 #include "./cub3d.h"
@@ -42,79 +42,51 @@ void	*get_mem(char *str, t_mlx *mlx)
 		return (0);
 }
 
-void    last_enter(char *file_name, t_mlx *mlx)
+void	last_enter(char *file_name, t_mlx *mlx)
 {
-    int     fd;
-    char    *a;
-    char    *b;
-    
-    fd = open(file_name, O_RDWR);
-    if (fd < 0)
-        print_error("ERROR: cannot open .cub file", mlx);
-    a = get_next_line(fd);
-    if (a == 0)
-        print_error("ERROR: map is empty", mlx);
-    while (a)
-    {
-        b = get_next_line(fd);
-        if (b == 0)
-        {
-            if (a[ft_strlen(a) - 1] != '\n')
-                ft_putchar_fd('\n', fd);
-            free(a);
-            close(fd);
-            return ;
-        }
-        free(a);
-        a = b;
-    }   
-}
+	int		fd;
+	char	*a;
+	char	*b;
 
-// static void	set_direction(t_mlx *mlx, int i, int j)
-// {
-// 	if (mlx->map.map[i][j] == 'N')
-// 	{
-// 		mlx->player.dir_vec.x = 0;
-// 		mlx->player.dir_vec.y = 1;
-// 	}
-// 	if (mlx->map.map[i][j] == 'S')
-// 	{
-// 		mlx->player.dir_vec.x = 0;
-// 		mlx->player.dir_vec.y = -1;
-// 	}
-// 	if (mlx->map.map[i][j] == 'E')
-// 	{
-// 		mlx->player.dir_vec.x = 1;
-// 		mlx->player.dir_vec.y = 0;
-// 	}
-// 	if (mlx->map.map[i][j] == 'W')
-// 	{
-// 		mlx->player.dir_vec.x = -1;
-// 		mlx->player.dir_vec.y = 0;
-// 	}
-// }
+	fd = open(file_name, O_RDWR);
+	if (fd < 0)
+		print_error("ERROR: cannot open .cub file", mlx);
+	a = get_next_line(fd);
+	if (a == 0)
+		print_error("ERROR: map is empty", mlx);
+	while (a)
+	{
+		b = get_next_line(fd);
+		if (b == 0)
+		{
+			if (a[ft_strlen(a) - 1] != '\n')
+				ft_putchar_fd('\n', fd);
+			free(a);
+			close(fd);
+			return ;
+		}
+		free(a);
+		a = b;
+	}
+}
 
 void	set_position(t_mlx *mlx)
 {
 	int	i;
 	int	j;
 
-	i = 0;
-	while (i < mlx->map.map_height)
+	i = -1;
+	while (++i < mlx->map.map_height)
 	{
-		j = 0;
-		while (j < mlx->map.map_width)
+		j = -1;
+		while (++j < mlx->map.map_width)
 		{
-			if (mlx->map.map[i][j] != '0' && mlx->map.map[i][j] != '1')
+			if (mlx->map.map[i][j] != '0' && mlx->map.map[i][j] != '1'
+				&& mlx->map.map[i][j] != ' ')
 			{
 				init_player(mlx, j, i, mlx->map.map[i][j]);
-				// set_direction(mlx, i, j);
 				mlx->map.map[i][j] = '0';
-				// mlx->player.pos.y = i + 0.5;
-				// mlx->player.pos.x = j + 0.5;
 			}
-			j++;
 		}
-		i++;
 	}
 }

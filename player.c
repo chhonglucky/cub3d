@@ -6,7 +6,7 @@
 /*   By: chanhhon <chanhhon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 11:11:09 by chanhhon          #+#    #+#             */
-/*   Updated: 2024/11/23 18:00:14 by chanhhon         ###   ########.fr       */
+/*   Updated: 2024/11/24 11:12:04 by chanhhon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,11 @@ void	move_player(t_mlx *mlx)
 	t_coor	player;
 
 	if (mlx->player.key_map[0] == mlx->player.key_map[2]
-			&& mlx->player.key_map[1] == mlx->player.key_map[3])
+		&& mlx->player.key_map[1] == mlx->player.key_map[3])
 		return ;
 	delta = move_decision(&(mlx->player));
 	player = mlx->player.pos;
 	if (is_movable(mlx, sum_vec(player, mult_scal(delta, MOVESPEED)), delta))
 		player = sum_vec(player, mult_scal(delta, MOVESPEED));
 	mlx->player.pos = player;
-
 }

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhhon <chanhhon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jae-kang <jae-kang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:40:19 by jae-kang          #+#    #+#             */
-/*   Updated: 2024/11/23 15:42:19 by chanhhon         ###   ########.fr       */
+/*   Updated: 2024/11/24 10:40:45 by jae-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 static int	check_parsing_info(t_map *map);
-static int	do_par(char **split, t_mlx *mlx, char *line);
+static int	parsing_info2(char **split, t_mlx *mlx, char *line);
 
 void	parsing(char *file_name, t_mlx *mlx)
 {
@@ -27,7 +27,7 @@ void	parsing(char *file_name, t_mlx *mlx)
 	if (fd < 0)
 		print_error("ERROR: cannot open .cub file", mlx);
 	if (parsing_info(fd, mlx))
-		return ;
+		print_error("ERROR: parsing information", mlx);
 	parsing_map(file_name, fd, mlx);
 	close(fd);
 }
@@ -40,28 +40,25 @@ int	parsing_info(int fd, t_mlx *mlx)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (line == 0)
-			return (1);
 		line = ft_strip(line);
 		if (line == 0)
 		{
 			line = get_next_line(fd);
-			continue;
+			continue ;
 		}
 		split = ft_split(line, ' ');
 		if (!split)
 			return (1);
-		if (do_par(split, mlx, line) == 1)
-			print_error("ERROR: map is wrong (parsing_info)", mlx);
+		if (parsing_info2(split, mlx, line) == 1)
+			return (1);
 		if (check_parsing_info(&mlx->map) == 0)
 			return (0);
 		line = get_next_line(fd);
 	}
-	print_error("ERROR: map is wrong (parsing_info)", mlx);
 	return (1);
 }
 
-static int	do_par(char **split, t_mlx *mlx, char *line)
+static int	parsing_info2(char **split, t_mlx *mlx, char *line)
 {
 	if (is_texture(split[0]) == 0)
 		parsing_texture(split, mlx);
@@ -79,10 +76,10 @@ static int	do_par(char **split, t_mlx *mlx, char *line)
 }
 
 static int	check_parsing_info(t_map *map)
-{	
+{
 	if (map->ceilling != UINT32_MAX && map->floor != UINT32_MAX)
 		if (map->texture[0].addr && map->texture[1].addr \
 			&& map->texture[2].addr && map->texture[3].addr)
-				return (0);
+			return (0);
 	return (1);
 }

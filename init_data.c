@@ -6,7 +6,7 @@
 /*   By: chanhhon <chanhhon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:32:50 by chanhhon          #+#    #+#             */
-/*   Updated: 2024/11/23 16:52:51 by chanhhon         ###   ########.fr       */
+/*   Updated: 2024/11/24 11:11:33 by chanhhon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	init_delta_dist(t_draw *arg)
 		arg->d_dist.y = fabs(1 / arg->ray_dir.y);
 }
 
-static void init_side_dist(t_draw *arg, t_mlx *mlx)
+static void	init_side_dist(t_draw *arg, t_mlx *mlx)
 {
 	if (arg->ray_dir.x < 0)
 	{
@@ -62,7 +62,7 @@ static void	init_map_coordinate(t_draw *arg, t_mlx *mlx)
 
 void	init_draw_args(t_draw *arg, t_mlx *mlx, int x)
 {
-	double width_position;
+	double	width_position;
 
 	width_position = 2.0 * x / WIDTH - 1;
 	init_ray_dir(arg, mlx, width_position);

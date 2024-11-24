@@ -6,7 +6,7 @@
 /*   By: chanhhon <chanhhon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 18:36:59 by hongchanhye       #+#    #+#             */
-/*   Updated: 2024/11/23 14:23:44 by chanhhon         ###   ########.fr       */
+/*   Updated: 2024/11/24 11:13:01 by chanhhon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,10 @@ static void	put_point(t_draw *arg, t_mlx *mlx, int x, t_texture_img *tex)
 			+ x * (mlx->img.bpp / 8)) = mlx->map.floor;
 }
 
-int rendering(t_mlx *mlx)
+int	rendering(t_mlx *mlx)
 {
 	int		x;
-	int 	side;
+	int		side;
 	int		tex_num;
 	t_draw	arg;
 
@@ -116,7 +116,7 @@ int rendering(t_mlx *mlx)
 		set_point(&arg);
 		arg.tex.x = (int)(arg.wall_x * mlx->map.texture[tex_num].tex_w);
 		if ((side == 0 && arg.ray_dir.x > 0)
-				|| (side == 1 && arg.ray_dir.y < 0))
+			|| (side == 1 && arg.ray_dir.y < 0))
 			arg.tex.x = mlx->map.texture[tex_num].tex_w - arg.tex.x - 1;
 		put_point(&arg, mlx, x, &(mlx->map.texture[tex_num]));
 		x++;

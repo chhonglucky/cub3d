@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: jae-kang <jae-kang@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2024/11/24 11:30:16 by chanhhon          #+#    #+#              #
+#    Updated: 2024/11/24 11:59:08 by jae-kang         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 CC=cc
 CFLAGS=-Wall -Wextra -Werror -fsanitize=address -g
 LIBDIR=libft
@@ -13,7 +25,7 @@ SRCS=gnl/get_next_line.c gnl/get_next_line_utils.c \
 	util_math.c init_data.c
 
 OBJS=$(SRCS:.c=.o)
-NAME=CUB3D
+NAME=cub3D
 
 all: $(NAME)
 

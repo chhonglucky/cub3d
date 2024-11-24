@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhhon <chanhhon@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jae-kang <jae-kang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/29 15:31:09 by jae-kang          #+#    #+#             */
-/*   Updated: 2024/11/18 11:10:57 by chanhhon         ###   ########.fr       */
+/*   Updated: 2024/11/24 10:38:31 by jae-kang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	init_mlx(t_mlx *mlx)
 		return (0);
 	}
 	mlx->img.addr = mlx_get_data_addr(mlx->img.img, &mlx->img.bpp,
-		&mlx->img.line, &mlx->img.endian);
+			&mlx->img.line, &mlx->img.endian);
 	if (!mlx->img.addr)
 	{
 		mlx_destroy_image(mlx->ptr, mlx->img.img);
@@ -53,4 +53,3 @@ void	init_map(t_map *map)
 	map->texture[3].img = 0;
 	map->texture[3].addr = 0;
 }
-

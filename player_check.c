@@ -6,13 +6,13 @@
 /*   By: chanhhon <chanhhon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 11:04:58 by chanhhon          #+#    #+#             */
-/*   Updated: 2024/11/23 16:29:48 by chanhhon         ###   ########.fr       */
+/*   Updated: 2024/11/24 11:12:24 by chanhhon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int check_map(t_mlx *mlx, t_coor ang)
+int	check_map(t_mlx *mlx, t_coor ang)
 {
 	if (ang.x < 0 || ang.x >= mlx->map.map_width)
 		return (1);
@@ -59,7 +59,7 @@ t_coor	move_decision(t_pov *player)
 		else if (player->key_map[1] == 0 && player->key_map[3] == 1)
 			direction = rotate(player->dir_vec, 225);
 		else
-			direction  = rotate(player->dir_vec, 180);
+			direction = rotate(player->dir_vec, 180);
 	}
 	else if (player->key_map[1] == 1)
 		direction = rotate(player->dir_vec, 90);
